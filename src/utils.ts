@@ -20,7 +20,6 @@ export class YieldData {
   latestData(): { x: number, y: number }[] {
     return this._latestData ??= (() => {
       const data = this.latestParsedData().map(row => row.slice(1));
-      console.log(data);
       return data[1].map((val, idx) => {
         const labelField: string = data[0][idx];
         return ({
