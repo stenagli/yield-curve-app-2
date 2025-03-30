@@ -1,0 +1,25 @@
+---
+import { fetchRealData } from '../utils';
+
+const { label, data } = await fetchRealData();
+---
+<div>
+  <canvas
+      id='real-yield-chart'
+      data-label={label}
+      data-data={JSON.stringify(data)}
+      >
+  </canvas>
+</div>
+
+<script>
+  import makeChart from '../makeChart.ts';
+
+  const ctx = document.getElementById("real-yield-chart");
+
+  makeChart({
+    ctx,
+    title: 'Real Yields',
+    borderColor: "rgb(75, 192, 192)",
+  })
+</script>
