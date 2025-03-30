@@ -1,11 +1,7 @@
 ---
 import { fetchRealData } from '../utils';
-import { YieldData } from '../utils';
 
-const csvData = await fetchRealData();
-const yieldData = new YieldData(csvData);
-const label = yieldData.latestLabel();
-const data = yieldData.latestData();
+const { label, data } = await fetchRealData();
 ---
 <div>
   <canvas

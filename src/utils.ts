@@ -3,7 +3,7 @@ type YearMonth = `${number}${number}${number}${number}${number}${number}`;
 
 type TreasuryYieldType = 'daily_treasury_real_yield_curve' | 'daily_treasury_yield_curve';
 
-export class YieldData {
+class YieldData {
   private data: string;
 
   private _latestParsedData: string[][] | undefined;
@@ -51,7 +51,12 @@ async function fetchData(type: TreasuryYieldType) {
   if (!data) {
     throw new Error(`No data available for type: ${type}`);
   }
-  return data;
+
+  const yieldData = new YieldData(data);
+  return {
+    label: yieldData.latestLabel(),
+    data: yieldData.latestData()
+  }
 }
 
 const today = () => new Date();
