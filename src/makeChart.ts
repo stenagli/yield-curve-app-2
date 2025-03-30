@@ -32,31 +32,32 @@ export default function makeChart({ ctx, title, borderColor }: {
   const data = JSON.parse(dataJSON);
 
   return new Chart(ctx, {
-  type: 'line',
-  data: {
-    datasets: [{
-      label,
-      data,
-      borderWidth: 1.5,
-      borderColor: borderColor,
-    }]
-  },
-  options: {
-    animation: false,
-    plugins: {
-      title: {
-        display: true,
-        text: title
-      }
+    type: 'line',
+    data: {
+      datasets: [{
+        label,
+        data,
+        borderWidth: 1.5,
+        borderColor: borderColor,
+      }]
     },
-    scales: {
-      x: {
-        type: 'linear' as const,
+    options: {
+      animation: false,
+      plugins: {
         title: {
           display: true,
-          text: 'Year'
+          text: title
+        }
+      },
+      scales: {
+        x: {
+          type: 'linear' as const,
+          title: {
+            display: true,
+            text: 'Year'
+          }
         }
       }
     }
-  }
-  })};
+  })
+};
