@@ -20,13 +20,9 @@ const data = yieldData.latestData();
   import makeChart from '../makeChart.ts';
 
   const ctx = document.getElementById("nominal-yield-chart");
-  const label = ctx.dataset.label;
-  const data = JSON.parse(ctx.dataset.data);
 
   makeChart({
     ctx,
-    label,
-    data,
     title: 'Nominal Yields',
     borderColor: 'rgb(255, 99, 132)',
   });

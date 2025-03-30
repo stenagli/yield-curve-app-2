@@ -20,12 +20,9 @@ const data = yieldData.latestData();
   import makeChart from '../makeChart.ts';
 
   const ctx = document.getElementById("real-yield-chart");
-  const label = ctx.dataset.label;
-  const data = JSON.parse(ctx.dataset.data);
+
   makeChart({
     ctx,
-    label,
-    data,
     title: 'Real Yields',
     borderColor: "rgb(75, 192, 192)",
   })
