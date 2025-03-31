@@ -1,17 +1,10 @@
 ---
 import { fetchNominalData } from '../utils';
 
-const { label, data } = await fetchNominalData();
+const nominalData = fetchNominalData();
+const label = nominalData.then((data) => data.label);
+const data = nominalData.then((data) => data.data);
 ---
-<div>
-  <canvas
-      id='nominal-yield-chart'
-      data-label={label}
-      data-data={JSON.stringify(data)}
-      >
-  </canvas>
-</div>
-
 <script>
   import makeChart from '../makeChart.ts';
 
@@ -23,3 +16,11 @@ const { label, data } = await fetchNominalData();
     borderColor: 'rgb(255, 99, 132)',
   });
 </script>
+<div>
+  <canvas
+    id='nominal-yield-chart'
+    data-label={await label}
+    data-data={JSON.stringify(await data)}
+  >
+  </canvas>
+</div>
