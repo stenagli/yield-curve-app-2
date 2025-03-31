@@ -1,9 +1,28 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import RealYieldChart from '../components/real-yield-chart.astro';
-import NominalYieldChart from '../components/nominal-yield-chart.astro';
+import Layout from '/src/layouts/Layout.astro';
+import RealCanvas from '/src/components/real-canvas.astro';
+import NominalCanvas from '/src/components/nominal-canvas.astro';
 ---
 <Layout>
-  <RealYieldChart />
-  <NominalYieldChart />
+  <script src="../makeChart.ts"></script>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      makeChart({
+        ctx: document.getElementById("real-yield-chart"),
+        title: 'Real Yields',
+        borderColor: "rgb(75, 192, 192)",
+      });
+
+      makeChart({
+        ctx: document.getElementById("nominal-yield-chart"),
+        title: 'Nominal Yields',
+        borderColor: 'rgb(255, 99, 132)',
+      });
+    });
+  </script>
+
+  <RealCanvas />
+
+  <NominalCanvas/>
 </Layout>
