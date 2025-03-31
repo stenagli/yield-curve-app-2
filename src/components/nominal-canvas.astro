@@ -1,0 +1,13 @@
+---
+import { fetchNominalData } from '../utils';
+
+const { label, data } = await fetchNominalData();
+---
+<div>
+  <canvas
+    id='nominal-yield-chart'
+    data-label={label}
+    data-data={JSON.stringify(data)}
+  >
+  </canvas>
+</div>

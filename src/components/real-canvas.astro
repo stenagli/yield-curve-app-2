@@ -1,0 +1,13 @@
+---
+import { fetchRealData } from '../utils';
+
+const { label, data } = await fetchRealData();
+---
+<div>
+  <canvas
+    id='real-yield-chart'
+    data-label={label}
+    data-data={JSON.stringify(data)}
+  >
+  </canvas>
+</div>
