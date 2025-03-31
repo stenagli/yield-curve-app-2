@@ -1,15 +1,18 @@
 ---
 import RealCanvas from './real-canvas.astro';
 ---
-<script>
-  import makeChart from '../makeChart.ts';
+<script src="../makeChart.ts"></script>
 
-  const ctx = document.getElementById("real-yield-chart");
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const ctx = document.getElementById("real-yield-chart");
 
-  makeChart({
-    ctx,
-    title: 'Real Yields',
-    borderColor: "rgb(75, 192, 192)",
-  })
+    makeChart({
+      ctx,
+      title: 'Real Yields',
+      borderColor: "rgb(75, 192, 192)",
+    })
+  });
 </script>
+
 <RealCanvas />

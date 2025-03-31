@@ -1,15 +1,18 @@
 ---
 import NominalCanvas from './nominal-canvas.astro';
 ---
-<script>
-  import makeChart from '../makeChart.ts';
+<script src="../makeChart.ts"></script>
 
-  const ctx = document.getElementById("nominal-yield-chart");
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const ctx = document.getElementById("nominal-yield-chart");
 
-  makeChart({
-    ctx,
-    title: 'Nominal Yields',
-    borderColor: 'rgb(255, 99, 132)',
+    makeChart({
+      ctx,
+      title: 'Nominal Yields',
+      borderColor: 'rgb(255, 99, 132)'
+    });
   });
 </script>
-<NominalCanvas />
+
+<NominalCanvas/>
