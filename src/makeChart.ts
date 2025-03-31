@@ -61,7 +61,3 @@ export default function makeChart({ ctx, title, borderColor }: {
     }
   })
 };
-
-if (typeof window !== 'undefined') {
-  (window as any).makeChart = makeChart;
-}

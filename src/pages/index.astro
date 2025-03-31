@@ -4,21 +4,19 @@ import RealCanvas from '/src/components/real-canvas.astro';
 import NominalCanvas from '/src/components/nominal-canvas.astro';
 ---
 <Layout>
-  <script src="../makeChart.ts"></script>
+  <script type="module" is:inline>
+    import makeChart from '/src/makeChart.ts';
 
-  <script is:inline>
-    document.addEventListener('DOMContentLoaded', () => {
-      makeChart({
-        ctx: document.getElementById("real-yield-chart"),
-        title: 'Real Yields',
-        borderColor: "rgb(75, 192, 192)",
-      });
+    makeChart({
+      ctx: document.getElementById("real-yield-chart"),
+      title: 'Real Yields',
+      borderColor: "rgb(75, 192, 192)",
+    });
 
-      makeChart({
-        ctx: document.getElementById("nominal-yield-chart"),
-        title: 'Nominal Yields',
-        borderColor: 'rgb(255, 99, 132)',
-      });
+    makeChart({
+      ctx: document.getElementById("nominal-yield-chart"),
+      title: 'Nominal Yields',
+      borderColor: 'rgb(255, 99, 132)',
     });
   </script>
 
