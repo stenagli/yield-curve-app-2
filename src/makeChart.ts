@@ -21,32 +21,41 @@ Chart.register(
   Legend
 );
 
-export default function makeChart({ ctx, title, borderColor }: {
-  ctx: HTMLCanvasElement;
-  title: string;
-  borderColor: string;
-}) {
-  const label = ctx.dataset.label;
-  const dataJSON= ctx.dataset.data;
-  if (!dataJSON) throw new Error('No data JSON');
-  const data = JSON.parse(dataJSON);
+export function makeCombinedChart({ ctx }: { ctx: HTMLCanvasElement }) {
+  const realLabel = ctx.dataset.realLabel;
+  const nominalLabel = ctx.dataset.nominalLabel;
+  const realDataJSON = ctx.dataset.realData;
+  const nominalDataJSON = ctx.dataset.nominalData;
+
+  if (!realDataJSON || !nominalDataJSON) throw new Error('Missing data JSON');
 
   return new Chart(ctx, {
     type: 'line',
     data: {
-      datasets: [{
-        label,
-        data,
-        borderWidth: 1.5,
-        borderColor: borderColor,
-      }]
+      datasets: [
+        {
+          label: `Nominal ${nominalLabel}`,nominalLabel,
+          data: JSON.parse(nominalDataJSON),
+          borderWidth: 1.5,
+          borderColor: 'rgb(255, 99, 132)',
+        },
+        {
+          label: `Real ${realLabel}`,
+          data: JSON.parse(realDataJSON),
+          borderWidth: 1.5,
+          borderColor: 'rgb(75, 192, 192)',
+        },
+      ]
     },
     options: {
       animation: false,
       plugins: {
         title: {
           display: true,
-          text: title
+          text: 'Treasury Yield Curves'
+        },
+        legend: {
+          display: true,
         }
       },
       scales: {
@@ -54,14 +63,16 @@ export default function makeChart({ ctx, title, borderColor }: {
           type: 'linear' as const,
           title: {
             display: true,
-            text: 'Year'
+            text: 'Maturity (Years)'
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Yield (%)'
           }
         }
       }
     }
-  })
-};
-
-if (typeof window !== 'undefined') {
-  (window as any).makeChart = makeChart;
+  });
 }

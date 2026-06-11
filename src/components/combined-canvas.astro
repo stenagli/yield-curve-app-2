@@ -1,0 +1,28 @@
+---
+import { fetchNominalData, fetchRealData } from '../utils';
+
+const [real, nominal] = await Promise.all([
+  fetchRealData(),
+  fetchNominalData(),
+]);
+---
+<div style="aspect-ratio: 2">
+  <canvas
+    id='yield-chart'
+    data-real-label={real.label}
+    data-real-data={JSON.stringify(real.data)}
+    data-nominal-label={nominal.label}
+    data-nominal-data={JSON.stringify(nominal.data)}
+  >
+  </canvas>
+</div>
+
+<script>
+  import { makeCombinedChart } from '../makeChart';
+
+  const canvas = document.getElementById('yield-chart') as HTMLCanvasElement | null;
+
+  if (canvas) {
+    makeCombinedChart({ ctx: canvas });
+  }
+</script>
